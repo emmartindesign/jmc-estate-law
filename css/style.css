@@ -1,0 +1,1742 @@
+/* ==========================================================================
+   JMC ESTATE LAW — CORE STYLESHEET
+   ==========================================================================
+   Client: JMC Estate Law (Jeffrey M. Cohen, Esq.)
+   Design System: Refined Editorial, Dignified Typography, Architectural Borders,
+                  High-Contrast Accessibility (WCAG AA Compliant).
+   
+   TABLE OF CONTENTS:
+   1. Design System Imports & CSS Reset
+   2. Accessibility & Base Elements
+   3. Typography & Editorial Hierarchy
+   4. Layout Containers & Grid Utilities
+   5. Buttons & Interactive Links
+   6. Top Navigation Bar & Mobile Drawer
+   7. Hero Section & Trust Indicators
+   8. Practice Areas Grid & Benefit Cards
+   9. The Solo Advantage / Attorney Spotlight
+   10. Dynamic Articles Grid & Source Badges
+   11. Contact Inquiry Form & Office Details
+   12. Footer & Legal Bar Disclaimers
+   13. Legal Content Layout (.legal-content for Privacy Policy)
+   14. Print & Reduced Motion Media Queries
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. DESIGN SYSTEM IMPORTS & CSS RESET
+   -------------------------------------------------------------------------- */
+@import url('./variables.css');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%; /* 16px base */
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--color-text-main);
+  background-color: var(--color-bg-base);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img, picture, svg, video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+
+/* --------------------------------------------------------------------------
+   2. ACCESSIBILITY & BASE ELEMENTS
+   -------------------------------------------------------------------------- */
+
+/* Skip to main content link for keyboard users */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: var(--space-4);
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  padding: var(--space-3) var(--space-6);
+  z-index: var(--z-modal);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-sm);
+  border: 2px solid var(--color-surface);
+  box-shadow: var(--shadow-elevated);
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Accessible focus visible outlines across interactive elements */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Custom text selection using brand slate/seafoam tint */
+::selection {
+  background-color: rgba(123, 180, 178, 0.35);
+  color: var(--color-charcoal-deep);
+}
+
+/* Visually hidden utility for screen readers */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. TYPOGRAPHY & EDITORIAL HIERARCHY
+   Classic editorial legal tone: dignified serif headings, generous line spacing
+   -------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-text-headings);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+h1 {
+  font-size: clamp(2.25rem, 5vw, var(--text-5xl));
+  font-weight: var(--weight-semibold);
+}
+
+h2 {
+  font-size: clamp(1.875rem, 3.5vw, var(--text-4xl));
+}
+
+h3 {
+  font-size: clamp(1.35rem, 2.5vw, var(--text-2xl));
+}
+
+h4 {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-semibold);
+}
+
+h5 {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+}
+
+h6 {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+p {
+  margin-bottom: var(--space-4);
+  color: var(--color-text-main);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.lead-text {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-muted);
+}
+
+/* Editorial section labels (replaces AI-style pill badges with dignified typographic counters) */
+.editorial-label {
+  display: block;
+  font-family: var(--font-meta);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-slate-gray);
+  margin-bottom: var(--space-3);
+}
+
+.editorial-label::after {
+  content: "";
+  display: inline-block;
+  width: 28px;
+  height: 1px;
+  background-color: var(--color-slate-gray);
+  vertical-align: middle;
+  margin-left: var(--space-3);
+  opacity: 0.6;
+}
+
+/* Subtle hairline divider */
+.hairline-rule {
+  border: 0;
+  height: 1px;
+  background-color: var(--color-border);
+  margin: var(--space-12) 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. LAYOUT CONTAINERS & GRID UTILITIES
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: var(--container-narrow);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+.container-wide {
+  width: 100%;
+  max-width: var(--container-wide);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-6);
+  padding-right: var(--space-6);
+}
+
+/* Section Spacing */
+.section-padding {
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+}
+
+.section-padding-sm {
+  padding-top: var(--section-padding-y-sm);
+  padding-bottom: var(--section-padding-y-sm);
+}
+
+.bg-surface {
+  background-color: var(--color-surface);
+}
+
+.bg-surface-muted {
+  background-color: var(--color-surface-muted);
+}
+
+.bg-spruce {
+  background-color: var(--color-spruce);
+  color: var(--color-text-inverse);
+}
+
+/* Section Header Block */
+.section-header {
+  margin-bottom: var(--space-12);
+}
+
+.section-header.text-center {
+  text-align: center;
+}
+
+.section-header.text-center .editorial-label::after {
+  display: none; /* Keep centered labels uncluttered */
+}
+
+.section-header .section-title {
+  margin-bottom: var(--space-4);
+}
+
+.section-header .section-subtitle {
+  font-size: var(--text-md);
+  color: var(--color-text-muted);
+  max-width: 65ch;
+  line-height: var(--leading-relaxed);
+}
+
+.section-header.text-center .section-subtitle {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. BUTTONS & INTERACTIVE LINKS
+   Substantial, architectural, tactile design. No blurry gradient buttons.
+   -------------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  line-height: var(--leading-none);
+  padding: var(--space-4) var(--space-8);
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+/* Primary Button: Deep Spruce with white text */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-text-inverse);
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-subtle);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: var(--color-text-inverse);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  background-color: var(--color-primary-active);
+  transform: translateY(0);
+}
+
+/* Secondary Button: Clean architectural outline */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(30, 69, 77, 0.05);
+  color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+.btn-secondary:active {
+  background-color: rgba(30, 69, 77, 0.1);
+}
+
+/* Inverse Button (for dark backgrounds like hero banner or footer) */
+.btn-inverse {
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  border-color: var(--color-surface);
+}
+
+.btn-inverse:hover {
+  background-color: var(--color-bg-base);
+  color: var(--color-primary-hover);
+  border-color: var(--color-bg-base);
+  transform: translateY(-1px);
+}
+
+.btn-inverse-outline {
+  background-color: transparent;
+  color: var(--color-text-inverse);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn-inverse-outline:hover {
+  border-color: var(--color-text-inverse);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Editorial Text Link with arrow */
+.editorial-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--color-slate-gray);
+  padding-bottom: 2px;
+  transition: all var(--transition-fast);
+}
+
+.editorial-link span.arrow {
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
+.editorial-link:hover {
+  color: var(--color-primary-dark);
+  border-bottom-color: var(--color-primary-dark);
+}
+
+.editorial-link:hover span.arrow {
+  transform: translateX(4px);
+}
+
+
+/* --------------------------------------------------------------------------
+   6. TOP NAVIGATION BAR & MOBILE DRAWER
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: var(--header-height);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  z-index: var(--z-header);
+  transition: box-shadow var(--transition-base);
+}
+
+.site-header.is-scrolled {
+  box-shadow: var(--shadow-subtle);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Logo & Practice Identity */
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+.logo-monogram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--color-primary);
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: var(--weight-bold);
+  color: var(--color-primary);
+  background-color: var(--color-bg-base);
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+
+.logo-identity {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-name {
+  font-family: var(--font-heading);
+  font-size: 1.375rem;
+  font-weight: var(--weight-semibold);
+  line-height: 1.1;
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-spruce);
+}
+
+.logo-tagline {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-slate-gray-dark);
+  margin-top: 2px;
+}
+
+/* Desktop Navigation */
+.main-nav,
+.primary-nav {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .main-nav,
+  .primary-nav {
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media (max-width: 991px) {
+  .primary-nav {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-surface);
+    display: none;
+    flex-direction: column;
+    padding: var(--space-8);
+    gap: var(--space-6);
+    overflow-y: auto;
+    border-top: 1px solid var(--color-border);
+    box-shadow: var(--shadow-drawer);
+    z-index: var(--z-drawer);
+  }
+
+  .primary-nav.is-open,
+  .primary-nav.nav-open {
+    display: flex;
+  }
+
+  .primary-nav .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-6);
+    width: 100%;
+  }
+
+  .primary-nav .nav-link {
+    font-size: var(--text-xl);
+    font-family: var(--font-heading);
+    color: var(--color-text-main);
+  }
+
+  .primary-nav .header-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-4);
+    width: 100%;
+    margin-top: var(--space-4);
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.nav-link {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-text-main);
+  padding: var(--space-2) 0;
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: width var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+.nav-link.active {
+  color: var(--color-primary);
+  font-weight: var(--weight-semibold);
+}
+
+/* Header Action CTA & Direct Phone */
+.header-actions {
+  display: none;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+@media (min-width: 992px) {
+  .header-actions {
+    display: flex;
+  }
+}
+
+.header-phone {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.header-phone:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Mobile Hamburger Toggle */
+.mobile-nav-toggle,
+.nav-toggle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2);
+  cursor: pointer;
+}
+
+@media (min-width: 992px) {
+  .mobile-nav-toggle,
+  .nav-toggle {
+    display: none;
+  }
+}
+
+.mobile-nav-toggle span,
+.nav-toggle span,
+.nav-toggle-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.mobile-nav-toggle[aria-expanded="true"] span:nth-child(1),
+.nav-toggle[aria-expanded="true"] span:nth-child(1),
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.mobile-nav-toggle[aria-expanded="true"] span:nth-child(2),
+.nav-toggle[aria-expanded="true"] span:nth-child(2),
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.mobile-nav-toggle[aria-expanded="true"] span:nth-child(3),
+.nav-toggle[aria-expanded="true"] span:nth-child(3),
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Mobile Drawer & Backdrop */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(26, 32, 38, 0.45);
+  backdrop-filter: blur(2px);
+  z-index: var(--z-backdrop);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.drawer-backdrop.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(85vw, 380px);
+  background-color: var(--color-surface);
+  z-index: var(--z-drawer);
+  box-shadow: var(--shadow-drawer);
+  transform: translateX(100%);
+  transition: transform var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-8);
+  overflow-y: auto;
+}
+
+.mobile-drawer.is-open {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.drawer-close {
+  background: transparent;
+  border: none;
+  font-size: var(--text-2xl);
+  color: var(--color-primary);
+  cursor: pointer;
+  line-height: 1;
+  padding: var(--space-2);
+}
+
+.drawer-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.drawer-nav-link {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  color: var(--color-text-main);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.drawer-nav-link:hover,
+.drawer-nav-link.active {
+  color: var(--color-primary);
+}
+
+.drawer-footer {
+  margin-top: auto;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.drawer-phone {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  color: var(--color-primary);
+  display: block;
+  margin-bottom: var(--space-4);
+}
+
+
+/* --------------------------------------------------------------------------
+   7. HERO SECTION & TRUST INDICATORS
+   Refined editorial layout with dignified legal typography
+   -------------------------------------------------------------------------- */
+.hero-section {
+  position: relative;
+  background-color: var(--color-bg-base);
+  border-bottom: 1px solid var(--color-border);
+  padding-top: clamp(var(--space-12), 8vw, var(--space-24));
+  padding-bottom: clamp(var(--space-12), 8vw, var(--space-20));
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .hero-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: var(--space-16);
+  }
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+.hero-pretitle {
+  display: inline-block;
+  font-family: var(--font-meta);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-slate-gray-dark);
+  margin-bottom: var(--space-4);
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5.5vw, 4rem);
+  line-height: 1.12;
+  color: var(--color-spruce);
+  margin-bottom: var(--space-6);
+}
+
+.hero-title em {
+  font-style: italic;
+  font-weight: var(--weight-regular);
+}
+
+.hero-description {
+  font-size: clamp(1.0625rem, 1.5vw, 1.25rem);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-8);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-12);
+}
+
+/* Trust Indicators strip */
+.hero-trust-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-6);
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
+}
+
+.trust-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.trust-item-value {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  color: var(--color-spruce);
+  line-height: 1.1;
+}
+
+.trust-item-label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-slate-gray-dark);
+  margin-top: var(--space-1);
+}
+
+/* Hero Editorial Card / Frame */
+.hero-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-card);
+  position: relative;
+}
+
+.hero-card::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  right: -8px;
+  bottom: -8px;
+  border: 1px solid var(--color-slate-gray-light);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero-card-header {
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.hero-card-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  color: var(--color-spruce);
+  margin-bottom: var(--space-2);
+}
+
+.hero-card-meta {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-slate-gray);
+}
+
+.hero-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.hero-checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-text-main);
+  line-height: var(--leading-normal);
+}
+
+.hero-checklist-bullet {
+  color: var(--color-spruce);
+  font-weight: var(--weight-bold);
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  line-height: 1;
+}
+
+
+/* --------------------------------------------------------------------------
+   8. PRACTICE AREAS GRID & BENEFIT CARDS
+   Architectural cards with clean hairline borders, no tacky icon blobs
+   -------------------------------------------------------------------------- */
+.practice-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--space-6);
+}
+
+@media (min-width: 640px) {
+  .practice-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .practice-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.practice-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+.practice-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-slate-gray);
+  box-shadow: var(--shadow-card-hover);
+}
+
+.practice-card-number {
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  color: var(--color-slate-gray);
+  margin-bottom: var(--space-4);
+  display: block;
+}
+
+.practice-card-title {
+  font-size: var(--text-2xl);
+  color: var(--color-spruce);
+  margin-bottom: var(--space-3);
+  line-height: 1.25;
+}
+
+.practice-card-description {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-6);
+}
+
+.practice-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+  border-top: 1px solid var(--color-border-subtle);
+  padding-top: var(--space-4);
+}
+
+.practice-card-list-item {
+  font-size: var(--text-xs);
+  color: var(--color-charcoal);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.practice-card-list-item::before {
+  content: "—";
+  color: var(--color-slate-gray);
+}
+
+.practice-card-footer {
+  margin-top: auto;
+  padding-top: var(--space-4);
+}
+
+/* Benefit Cards Grid */
+.benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-8);
+  margin-top: var(--space-12);
+}
+
+.benefit-card {
+  background-color: var(--color-surface);
+  border-left: 3px solid var(--color-primary);
+  border-top: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-6) var(--space-8);
+}
+
+.benefit-card-title {
+  font-size: var(--text-xl);
+  color: var(--color-spruce);
+  margin-bottom: var(--space-2);
+}
+
+.benefit-card-text {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: var(--leading-normal);
+}
+
+
+/* --------------------------------------------------------------------------
+   9. THE SOLO ADVANTAGE / ATTORNEY SPOTLIGHT
+   Editorial magazine-style profile layout
+   -------------------------------------------------------------------------- */
+.attorney-section {
+  background-color: var(--color-surface-muted);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.attorney-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .attorney-grid {
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: var(--space-16);
+  }
+}
+
+/* Portrait & Plaque Frame */
+.attorney-portrait-wrap {
+  position: relative;
+  max-width: 440px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.attorney-portrait-frame {
+  position: relative;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  padding: var(--space-3);
+  box-shadow: var(--shadow-elevated);
+}
+
+.attorney-image {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  filter: contrast(1.02);
+}
+
+.attorney-plaque {
+  margin-top: var(--space-4);
+  background-color: var(--color-spruce);
+  color: var(--color-text-inverse);
+  padding: var(--space-4) var(--space-6);
+  text-align: center;
+}
+
+.attorney-plaque-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-normal);
+  color: var(--color-text-inverse);
+}
+
+.attorney-plaque-sub {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-sage-mist);
+  margin-top: var(--space-1);
+}
+
+/* Attorney Bio & Credentials */
+.attorney-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.attorney-quote {
+  font-family: var(--font-heading);
+  font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+  font-style: italic;
+  line-height: var(--leading-snug);
+  color: var(--color-spruce);
+  border-left: 2px solid var(--color-primary);
+  padding-left: var(--space-6);
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+.attorney-bio-text {
+  font-size: var(--text-base);
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-6);
+}
+
+.credential-table {
+  border-top: 1px solid var(--color-border);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.credential-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+  font-size: var(--text-sm);
+}
+
+.credential-key {
+  font-weight: var(--weight-semibold);
+  color: var(--color-charcoal);
+}
+
+.credential-value {
+  color: var(--color-text-muted);
+  text-align: right;
+}
+
+
+/* --------------------------------------------------------------------------
+   10. DYNAMIC ARTICLES GRID & SOURCE BADGES
+   Clean, structured cards with restrained, accessible badges (no neon capsules)
+   -------------------------------------------------------------------------- */
+.articles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+@media (min-width: 768px) {
+  .articles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .articles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.article-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.article-card:hover {
+  border-color: var(--color-slate-gray);
+  box-shadow: var(--shadow-card);
+}
+
+.article-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+
+/* Source Badge: Crisp hairline tag, avoids AI neon pill cliche */
+.source-badge {
+  display: inline-block;
+  font-family: var(--font-meta);
+  font-size: 0.6875rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-primary);
+  background-color: var(--color-sage-mist-tint);
+  border: 1px solid var(--color-sage-mist-border);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.article-date {
+  font-size: var(--text-xs);
+  color: var(--color-text-subtle);
+  font-family: var(--font-meta);
+}
+
+.article-title {
+  font-size: var(--text-xl);
+  color: var(--color-spruce);
+  margin-bottom: var(--space-3);
+  line-height: var(--leading-snug);
+}
+
+.article-title a:hover {
+  color: var(--color-spruce-dark);
+}
+
+.article-excerpt {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-6);
+}
+
+.article-footer {
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+
+/* --------------------------------------------------------------------------
+   11. CONTACT INQUIRY FORM & OFFICE DETAILS
+   High contrast, accessible, clear focus states & field validation
+   -------------------------------------------------------------------------- */
+.contact-section {
+  position: relative;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-12);
+}
+
+@media (min-width: 992px) {
+  .contact-grid {
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: var(--space-16);
+  }
+}
+
+.contact-form-wrap {
+  background-color: var(--color-bg-base);
+  border: 1px solid var(--color-border);
+  padding: clamp(var(--space-6), 4vw, var(--space-10));
+}
+
+.form-title {
+  font-size: var(--text-2xl);
+  color: var(--color-spruce);
+  margin-bottom: var(--space-2);
+}
+
+.form-subtitle {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-6);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .form-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-4);
+}
+
+.form-label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-charcoal);
+  margin-bottom: var(--space-2);
+}
+
+.form-label .required-mark {
+  color: var(--color-error);
+  margin-left: 2px;
+}
+
+.form-input,
+.form-select,
+.form-textarea,
+.form-control {
+  width: 100%;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--color-charcoal);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-input:hover,
+.form-select:hover,
+.form-textarea:hover,
+.form-control:hover {
+  border-color: var(--color-primary);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus,
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder,
+.form-control::placeholder {
+  color: #728487; /* High contrast placeholder */
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Validation states */
+.form-group.has-error .form-input,
+.form-group.has-error .form-select,
+.form-group.has-error .form-textarea,
+.form-group.has-error .form-control {
+  border-color: var(--color-error);
+  background-color: var(--color-error-bg);
+}
+
+.field-error-message {
+  font-size: var(--text-xs);
+  color: var(--color-error);
+  margin-top: var(--space-1);
+}
+
+/* Status message alert banner */
+.form-status-message {
+  display: none;
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-6);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.form-status-message.is-visible,
+.form-status-message:not(:empty) {
+  display: block;
+}
+
+.form-status-message.status-success {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+  border: 1px solid #C3E6D0;
+}
+
+.form-status-message.status-error {
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
+  border: 1px solid #F5C6CB;
+}
+
+/* Confidentiality disclaimer note */
+.form-disclaimer {
+  font-size: 0.75rem;
+  line-height: var(--leading-normal);
+  color: var(--color-text-subtle);
+  margin-top: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
+}
+
+/* Office details card */
+.office-details-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.office-info-block {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-6);
+}
+
+.office-info-label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-slate-gray);
+  margin-bottom: var(--space-2);
+}
+
+.office-info-value {
+  font-size: var(--text-base);
+  color: var(--color-charcoal);
+  line-height: var(--leading-normal);
+}
+
+.office-info-value a {
+  color: var(--color-primary);
+  font-weight: var(--weight-medium);
+}
+
+.office-info-value a:hover {
+  text-decoration: underline;
+}
+
+
+/* --------------------------------------------------------------------------
+   12. FOOTER & LEGAL BAR DISCLAIMERS
+   Stately, authoritative dark spruce footer with WCAG AA compliance
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background-color: var(--color-spruce);
+  color: var(--color-text-inverse);
+  padding-top: var(--space-16);
+  padding-bottom: var(--space-8);
+  margin-top: auto;
+  border-top: 2px solid var(--color-spruce-dark);
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-10);
+  padding-bottom: var(--space-12);
+  border-bottom: 1px solid var(--color-border-inverse);
+}
+
+@media (min-width: 768px) {
+  .footer-top {
+    grid-template-columns: 1.4fr repeat(2, 1fr) 1.2fr;
+    gap: var(--space-8);
+  }
+}
+
+.footer-brand .logo-monogram {
+  border-color: var(--color-surface);
+  color: var(--color-surface);
+  background-color: transparent;
+}
+
+.footer-brand .logo-name {
+  color: var(--color-text-inverse);
+}
+
+.footer-brand .logo-tagline {
+  color: var(--color-sage-mist);
+}
+
+.footer-description {
+  font-size: var(--text-sm);
+  color: var(--color-text-inverse-muted);
+  line-height: var(--leading-relaxed);
+  margin-top: var(--space-4);
+  max-width: 38ch;
+}
+
+.footer-heading {
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-text-inverse);
+  margin-bottom: var(--space-4);
+}
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer-link {
+  font-size: var(--text-sm);
+  color: var(--color-text-inverse-muted);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer-link:hover {
+  color: var(--color-text-inverse);
+  text-decoration: underline;
+}
+
+/* Formal Legal Disclaimers Bar */
+.footer-disclaimer-wrap {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+  border-bottom: 1px solid var(--color-border-inverse);
+}
+
+.footer-disclaimer-text {
+  font-size: 0.75rem;
+  color: var(--color-text-inverse-muted);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-3);
+}
+
+/* Bottom Copyright Bar */
+.footer-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-top: var(--space-6);
+  font-size: var(--text-xs);
+  color: var(--color-text-inverse-muted);
+}
+
+@media (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+  }
+}
+
+.footer-legal-links {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.footer-legal-link {
+  color: var(--color-text-inverse-muted);
+  text-decoration: none;
+}
+
+.footer-legal-link:hover {
+  color: var(--color-text-inverse);
+  text-decoration: underline;
+}
+
+
+/* --------------------------------------------------------------------------
+   13. LEGAL CONTENT LAYOUT (.legal-content for Privacy Policy & Disclaimers)
+   Narrow measure, high readability, structured clauses
+   -------------------------------------------------------------------------- */
+.legal-layout {
+  padding-top: var(--space-12);
+  padding-bottom: var(--space-20);
+}
+
+.legal-header {
+  margin-bottom: var(--space-10);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.legal-header .legal-title {
+  font-size: clamp(2rem, 4vw, var(--text-4xl));
+  margin-bottom: var(--space-2);
+}
+
+.legal-meta {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-slate-gray);
+}
+
+.legal-content {
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-main);
+  max-width: 72ch; /* Optimal reading measure for long legal documents */
+}
+
+.legal-content h2 {
+  font-size: var(--text-2xl);
+  color: var(--color-spruce);
+  margin-top: var(--space-10);
+  margin-bottom: var(--space-4);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.legal-content h2:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
+
+.legal-content h3 {
+  font-size: var(--text-xl);
+  color: var(--color-spruce);
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-3);
+}
+
+.legal-content p {
+  margin-bottom: var(--space-4);
+}
+
+.legal-content ul,
+.legal-content ol {
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-6);
+  padding-left: var(--space-6);
+}
+
+.legal-content ul {
+  list-style-type: disc;
+}
+
+.legal-content ol {
+  list-style-type: decimal;
+}
+
+.legal-content li {
+  margin-bottom: var(--space-2);
+  line-height: var(--leading-normal);
+}
+
+.legal-content a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.legal-content a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Callout alert inside legal texts */
+.legal-notice {
+  background-color: var(--color-surface-muted);
+  border-left: 3px solid var(--color-primary);
+  border-top: 1px solid var(--color-border);
+  border-right: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-4) var(--space-6);
+  margin: var(--space-6) 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+}
+
+.legal-notice strong {
+  color: var(--color-spruce);
+  display: block;
+  margin-bottom: var(--space-1);
+}
+
+
+/* --------------------------------------------------------------------------
+   14. PRINT & ACCESSIBILITY MEDIA QUERIES
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media print {
+  .site-header,
+  .mobile-drawer,
+  .mobile-nav-toggle,
+  .hero-actions,
+  .contact-form-wrap,
+  .site-footer {
+    display: none !important;
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #000000;
+    font-size: 12pt;
+  }
+
+  .container, .container-narrow {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  a {
+    text-decoration: underline;
+    color: #000000;
+  }
+}

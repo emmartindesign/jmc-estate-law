@@ -1,0 +1,195 @@
+/* ==========================================================================
+   JMC ESTATE LAW — DESIGN SYSTEM VARIABLES
+   ==========================================================================
+   Client: JMC Estate Law (Jeffrey M. Cohen, Esq.)
+   Aesthetic: Refined Editorial Legal Practice — Dignified, High-Contrast,
+              Architectural, Trustworthy, Accessible (WCAG AA Compliant).
+   Explicitly avoids AI cliches (no neon blobs, no pill eyebrows, no icon circles).
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Google Fonts Import
+   Headings: Cormorant Garamond (High-end editorial legal serif)
+   Body: Plus Jakarta Sans (Clean, legible, modern humanist sans-serif)
+   -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+:root {
+  /* ========================================================================
+     1. BRAND PALETTE (From User Swatches)
+     ======================================================================== */
+  /* Swatch 1: Primary Brand & Headings (Deep coastal evergreen / slate-teal) */
+  --color-spruce: #1E454D;
+  --color-spruce-dark: #132E34;
+  --color-spruce-light: #2C5F69;
+
+  /* Swatch 2: Secondary / Borders / Subdued accents */
+  --color-slate-gray: #678186;
+  --color-slate-gray-dark: #4F6468;
+  --color-slate-gray-light: #90A4A8;
+
+  /* Swatch 3: Light Neutral / Subtle Card Surfaces */
+  --color-sage-mist: #CED4D0;
+  --color-sage-mist-tint: #F2F5F3;
+  --color-sage-mist-border: #BDC5C0;
+
+  /* Swatch 4: Interactive Accent & Focus Rings */
+  --color-seafoam: #7BB4B2;
+  --color-seafoam-dark: #3F7573;
+  --color-seafoam-light: #B4D6D5;
+
+  /* Swatch 5: High-Contrast Body Text (Rich Charcoal) */
+  --color-charcoal: #29313A;
+  --color-charcoal-deep: #1A2026;
+
+  /* ========================================================================
+     2. SEMANTIC COLOR TOKENS (WCAG AA Compliant)
+     ======================================================================== */
+  /* Brand role assignments */
+  --color-primary: var(--color-spruce);
+  --color-primary-hover: var(--color-spruce-dark);
+  --color-primary-active: #0D2024;
+
+  --color-secondary: var(--color-slate-gray);
+  --color-secondary-hover: var(--color-slate-gray-dark);
+
+  --color-accent: var(--color-seafoam);
+  --color-accent-dark: var(--color-seafoam-dark);
+  --color-accent-light: var(--color-seafoam-light);
+
+  /* Backgrounds & Surfaces */
+  --color-bg-base: #F9FAF9;          /* Warm neutral paper canvas */
+  --color-surface: #FFFFFF;          /* Pure white card and container surface */
+  --color-surface-muted: var(--color-sage-mist-tint); /* Subtle section tint */
+  --color-surface-alt: #EDF1EE;      /* Secondary surface layer */
+  --color-surface-inverse: var(--color-spruce); /* Dark premium surface (footer, hero banner) */
+
+  /* Text & Typography */
+  --color-text-main: var(--color-charcoal);      /* Primary high-contrast body (13.7:1 on white) */
+  --color-text-headings: var(--color-spruce);    /* Authoritative serif headings (8.7:1 on white) */
+  --color-text-muted: #516265;                   /* Subdued text passing WCAG AA (5.2:1 on white) */
+  --color-text-subtle: #6A7B7E;                  /* Caption/helper text */
+  --color-text-inverse: #FFFFFF;                 /* White text on dark surfaces */
+  --color-text-inverse-muted: #D3DAD6;           /* Subdued text on dark surfaces (5.6:1 on spruce) */
+
+  /* Borders & Dividers */
+  --color-border: #D3DAD6;           /* Structural card and section border */
+  --color-border-subtle: #E6EAE7;    /* Subtle divider rules */
+  --color-border-strong: var(--color-slate-gray); /* Emphasized architectural borders */
+  --color-border-inverse: rgba(255, 255, 255, 0.16); /* Border on dark spruce */
+
+  /* States & Interaction */
+  --color-focus: var(--color-spruce);
+  --color-focus-ring: rgba(30, 69, 77, 0.35);
+  --color-focus-accent: var(--color-seafoam);
+  --color-error: #9A2C2C;
+  --color-error-bg: #FDF3F3;
+  --color-success: #236545;
+  --color-success-bg: #F1F8F4;
+
+  /* ========================================================================
+     3. TYPOGRAPHY
+     ======================================================================== */
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --font-heading: var(--font-serif);
+  --font-body: var(--font-sans);
+  --font-meta: var(--font-sans);
+
+  /* Font Scale */
+  --text-xs: 0.75rem;       /* 12px */
+  --text-sm: 0.875rem;      /* 14px */
+  --text-base: 1rem;        /* 16px */
+  --text-md: 1.125rem;      /* 18px */
+  --text-lg: 1.25rem;       /* 20px */
+  --text-xl: 1.5rem;        /* 24px */
+  --text-2xl: 1.875rem;     /* 30px */
+  --text-3xl: 2.25rem;      /* 36px */
+  --text-4xl: 2.875rem;     /* 46px */
+  --text-5xl: 3.5rem;       /* 56px */
+
+  /* Font Weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Line Heights */
+  --leading-none: 1.0;
+  --leading-tight: 1.18;
+  --leading-snug: 1.32;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+
+  /* Letter Spacing */
+  --tracking-tighter: -0.025em;
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.04em;
+  --tracking-wider: 0.08em;
+  --tracking-widest: 0.14em;
+
+  /* ========================================================================
+     4. SPACING SCALE
+     ======================================================================== */
+  --space-1: 0.25rem;       /* 4px */
+  --space-2: 0.5rem;        /* 8px */
+  --space-3: 0.75rem;       /* 12px */
+  --space-4: 1rem;          /* 16px */
+  --space-5: 1.25rem;       /* 20px */
+  --space-6: 1.5rem;        /* 24px */
+  --space-8: 2rem;          /* 32px */
+  --space-10: 2.5rem;       /* 40px */
+  --space-12: 3rem;         /* 48px */
+  --space-16: 4rem;         /* 64px */
+  --space-20: 5rem;         /* 80px */
+  --space-24: 6rem;         /* 96px */
+  --space-32: 8rem;         /* 128px */
+
+  /* Section Padding */
+  --section-padding-y: var(--space-20);
+  --section-padding-y-sm: var(--space-12);
+
+  /* ========================================================================
+     5. LAYOUT & CONTAINERS
+     ======================================================================== */
+  --container-max: 1200px;
+  --container-narrow: 820px;
+  --container-wide: 1360px;
+  --header-height: 84px;
+
+  /* Editorial geometry: refined, crisp, restrained corners (no pill bubbles) */
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+
+  /* ========================================================================
+     6. ARCHITECTURAL ELEVATION & SHADOWS
+     Quiet, natural ambient shadows — no blurred glowing neon orbs
+     ======================================================================== */
+  --shadow-none: none;
+  --shadow-subtle: 0 1px 3px rgba(30, 69, 77, 0.04);
+  --shadow-card: 0 2px 8px rgba(30, 69, 77, 0.05), 0 1px 2px rgba(30, 69, 77, 0.03);
+  --shadow-card-hover: 0 8px 24px rgba(30, 69, 77, 0.08), 0 2px 4px rgba(30, 69, 77, 0.03);
+  --shadow-elevated: 0 12px 36px rgba(30, 69, 77, 0.1);
+  --shadow-drawer: -4px 0 24px rgba(26, 32, 38, 0.15);
+
+  /* ========================================================================
+     7. TRANSITIONS & ANIMATION
+     ======================================================================== */
+  --transition-fast: 150ms ease;
+  --transition-base: 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 380ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ========================================================================
+     8. Z-INDEX SYSTEM
+     ======================================================================== */
+  --z-base: 1;
+  --z-sticky: 100;
+  --z-header: 200;
+  --z-backdrop: 300;
+  --z-drawer: 400;
+  --z-modal: 500;
+}

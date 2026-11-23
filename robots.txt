@@ -1,0 +1,52 @@
+# =====================================================================
+# ROBOTS.TXT INSTRUCTIONS FOR BEGINNERS
+# =====================================================================
+# By default, this file blocks ALL web crawlers and AI bots from 
+# indexing this website. 
+#
+# HOW TO RE-ENABLE SEARCH ENGINES (Google, Bing, Yahoo, etc.) WHEN 
+# LAUNCHING ON PRIVATE HOSTING:
+# 1. Open this robots.txt file in a text editor.
+# 2. Delete or comment out (add # in front of) the lines:
+#      User-agent: *
+#      Disallow: /
+# 3. Leave the specific AI bot disallow rules active below if you still
+#    wish to prevent AI scraping, or remove them if you want full indexing.
+# =====================================================================
+
+User-agent: *
+Disallow: /
+
+# Specific AI and Crawler Disallow Rules
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Anthropic-ai
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /

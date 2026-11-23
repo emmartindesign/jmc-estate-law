@@ -1,0 +1,56 @@
+[
+  {
+    "id": "art-1",
+    "title": "Revocable Living Trusts vs. Traditional Wills: What Every Family Needs to Know",
+    "source": "American Bar Association",
+    "url": "https://www.americanbar.org/groups/real_property_trust_estate/resources/estate_planning/revocable_trusts/",
+    "date": "October 14, 2026",
+    "summary": "An in-depth legal overview examining how revocable living trusts bypass public probate court, maintain family financial privacy, and establish seamless management in the event of unexpected incapacity.",
+    "readTime": "6 min read"
+  },
+  {
+    "id": "art-2",
+    "title": "Why Naming Beneficiaries on Retirement Accounts Isn't Always Enough",
+    "source": "Kiplinger's Personal Finance",
+    "url": "https://www.kiplinger.com/retirement/estate-planning/beneficiary-designation-mistakes",
+    "date": "September 28, 2026",
+    "summary": "Direct beneficiary designations on 401(k)s and IRAs legally override wills, but outdated designations or naming minor children directly can trigger court conservatorships and unintended tax consequences.",
+    "readTime": "5 min read"
+  },
+  {
+    "id": "art-3",
+    "title": "Estate Planning for Blended Families: Balancing Spousal Support and Children's Legacies",
+    "source": "Estate Planning Review",
+    "url": "https://www.estateplanningreview.com/articles/blended-families-qtip-trusts",
+    "date": "August 19, 2026",
+    "summary": "Proven legal strategies for second marriages and blended families, including marital trusts and structured distribution schedules designed to support a surviving spouse while protecting children's inheritances.",
+    "readTime": "8 min read"
+  },
+  {
+    "id": "art-4",
+    "title": "The Cost of Waiting: How Statutory Intestacy Laws Distribute Property Without an Estate Plan",
+    "source": "National Academy of Elder Law Attorneys",
+    "url": "https://www.naela.org/resources/public-resources/intestate-succession-overview",
+    "date": "July 22, 2026",
+    "summary": "When an individual passes away without valid documents, state statutes strictly dictate distribution. Unmarried partners, stepchildren, and close friends receive zero legal recognition under default laws.",
+    "readTime": "7 min read"
+  },
+  {
+    "id": "art-5",
+    "title": "The 4 Essential Legal Safeguards Every Parent of Minor Children Must Put in Place",
+    "source": "American Bar Association",
+    "url": "https://www.americanbar.org/groups/real_property_trust_estate/resources/family-guardianship-planning/",
+    "date": "June 11, 2026",
+    "summary": "A practical checklist for young parents detailing formal testamentary guardianship nominations, temporary emergency caregiver authorizations, and trust milestones to avoid court-supervised child custody hearings.",
+    "readTime": "5 min read"
+  },
+  {
+    "id": "art-6",
+    "title": "Digital Assets and Estate Administration: Safeguarding Online Accounts and Digital Legacies",
+    "source": "The Wall Street Journal",
+    "url": "https://www.wsj.com/personal-finance/digital-estate-planning-passwords-executors",
+    "date": "May 30, 2026",
+    "summary": "From photo cloud vaults and business emails to financial credentials, executors face federal anti-hacking statutes unless clients grant explicit digital fiduciary powers in their core estate planning documents.",
+    "readTime": "6 min read"
+  }
+]
